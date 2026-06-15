@@ -1,7 +1,7 @@
 package com.example.trabalho06.adapter.in.sqs;
 
 import com.example.trabalho06.adapter.in.sqs.dto.EventoPedidoDTO;
-import com.example.trabalho06.core.ports.in.ProcessarPedidoUseCase;
+import com.example.trabalho06.applications.ports.in.ProcessarPedidoUseCase;
 import io.awspring.cloud.sqs.annotation.SqsListener;
 import org.springframework.stereotype.Component;
 

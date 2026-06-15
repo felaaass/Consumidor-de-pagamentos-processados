@@ -2,40 +2,33 @@ package com.example.trabalho06.core.domain.model;
 
 public class PedidoBO {
 
-    private String id;
+    private String pedidoId;
     private Double valorOriginal;
-    private Double valorFinal;
-    private boolean descontoAplicado;
+    private Double valorPago;
 
-    public PedidoBO(String id, Double valorOriginal) {
-        this.id = id;
+    public PedidoBO(String pedidoId, Double valorOriginal) {
+        this.pedidoId = pedidoId;
         this.valorOriginal = valorOriginal;
-        this.aplicarRegrasDeDesconto();
+        this.valorPago = valorOriginal;
     }
 
-    private void aplicarRegrasDeDesconto() {
-        if (this.valorOriginal > 1000.00) {
-            this.valorFinal = this.valorOriginal * 0.90;
-            this.descontoAplicado = true;
-        } else {
-            this.valorFinal = this.valorOriginal;
-            this.descontoAplicado = false;
-        }
+    public boolean isElegivelParaDesconto() {
+        return this.valorOriginal > 1000.0;
     }
 
-    public String getId() {
-        return id;
+    public void aplicarDesconto() {
+        this.valorPago = this.valorOriginal * 0.90;
+    }
+
+    public String getPedidoId() {
+        return pedidoId;
     }
 
     public Double getValorOriginal() {
         return valorOriginal;
     }
 
-    public Double getValorFinal() {
-        return valorFinal;
-    }
-
-    public boolean isDescontoAplicado() {
-        return descontoAplicado;
+    public Double getValorPago() {
+        return valorPago;
     }
 }

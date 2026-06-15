@@ -1,4 +1,4 @@
-package com.example.trabalho06.core.ports.out;
+package com.example.trabalho06.applications.ports.out;
 
 import com.example.trabalho06.core.domain.model.PedidoBO;
 

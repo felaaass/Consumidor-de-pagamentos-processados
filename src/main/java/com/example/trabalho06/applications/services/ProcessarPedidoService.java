@@ -1,8 +1,8 @@
-package com.example.trabalho06.core.usecase;
+package com.example.trabalho06.applications.services;
 
 import com.example.trabalho06.core.domain.model.PedidoBO;
-import com.example.trabalho06.core.ports.in.ProcessarPedidoUseCase;
-import com.example.trabalho06.core.ports.out.SalvarPedidoPort;
+import com.example.trabalho06.applications.ports.in.ProcessarPedidoUseCase;
+import com.example.trabalho06.applications.ports.out.SalvarPedidoPort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,7 +16,12 @@ public class ProcessarPedidoService implements ProcessarPedidoUseCase {
 
     @Override
     public void processar(String pedidoId, Double valorPago) {
-        PedidoBO pedidoBO = new PedidoBO(pedidoId, valorPago);
-        salvarPedidoPort.salvar(pedidoBO);
+        PedidoBO pedido = new PedidoBO(pedidoId, valorPago);
+
+        if (pedido.isElegivelParaDesconto()) {
+            pedido.aplicarDesconto();
+        }
+
+        salvarPedidoPort.salvar(pedido);
     }
 }
